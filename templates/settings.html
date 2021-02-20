@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    RPi Face
+{% endblock %}
+
+{% block main %}
+<div class="row paddedRow">
+    <div class="col">
+        <h2>Settings</h2>
+        <p>Configure the Raspberry Pi camera</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-md">
+<form action="/settings" method="POST">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Pi Camera Settings</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">Horizontal resolution (pixels)</td>
+                    <td>
+                        <input class="form-control" type="number" min="0" max="99999" name="resolution_x" value="{{ cam.resolution_x }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-middle">Vertical resolution (pixels)</td>
+                    <td>
+                        <input class="form-control" type="number" min="0" max="99999" name="resolution_y" value="{{ cam.resolution_y }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-middle">Camera rotation (degrees)</td>
+                    <td>
+                        <input class="form-control" type="number" min="0" max="360" name="rotation" value="{{ cam.rotation }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-middle">Horizontal flip</td>
+                    <td>
+                        {% if cam.hflip == "yes" %}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="hflipYes" type="radio" name="hflip" value="yes" 
+                                checked>
+                            <label class="form-check-label" for="hflipYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="hflipNo" type="radio" name="hflip" value="no">
+                            <label class="form-check-label" for="hflipNo">No</label>
+                        </div>
+                        {% else %}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="hflipYes" type="radio" name="hflip" value="yes">
+                            <label class="form-check-label" for="hflipYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="hflipNo" type="radio" name="hflip" value="no" checked>
+                            <label class="form-check-label" for="hflipNo">No</label>
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+<div>
+    <button type="submit" class="btn btn-primary" name="save">Save Configuration</button>
+</div>
+</form>
+    </div>
+<div class="col"></div>
+</div>
+
+<div class="row paddedRow">
+    <div class="col">
+        <form action="/settings" method="POST">
+            <button type="submit" class="btn btn-secondary" name="test" value="test">Test Camera</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}
