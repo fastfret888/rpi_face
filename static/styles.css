@@ -1,0 +1,64 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #466ba0;
+}
+
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+
+    /* Set background image */
+    background-image: url("images/background.png");
+    background-size: cover;
+    min-height: 600px;
+}
+
+main img
+{
+    /* Constrain images on small screens */
+    max-width: 100%;
+}
+
+table
+{
+    text-align: left;
+}
+
+.paddedRow
+{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.paddedRow2
+{
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+.warning
+{
+    color: red;
+    font-weight: bold;
+}

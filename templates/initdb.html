@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    RPi Face
+{% endblock %}
+
+{% block main %}
+<div class="row paddedRow">
+    <div class="col">
+        <h2>Initialize Database</h2>
+        <p><br></p>
+        <p class="warning">WARNING: This will reset the database and delete all data!</p>
+        <p class="warning">Are you sure?</p>
+    </div>
+</div>
+<div class="row paddedRow">
+    <div class="col">
+        <form action="/initdb" method="POST">
+            <button class="btn btn-secondary" value="cancel" name="cancel" type="submit">Cancel</button>
+            <button class="btn btn-danger" value="initialize" name="initialize" type="submit">Initialize Database</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

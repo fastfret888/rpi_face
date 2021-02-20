@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    RPi Face
+{% endblock %}
+
+{% block main %}
+    <div class="row paddedRow">
+        <div class="col">
+            <h2><b>Raspberry Pi</b><br><small class="text-muted">Real-Time Face Recognition</small></h2>
+        </div>
+    </div>
+    <div class="row paddedRow">
+        <div class="col">
+            <form action="/" method="post">
+            {% if capture_active %}
+                <button class="btn btn-primary" type="submit" name="on_off" value="False">Deactivate</button>
+                <p></p>
+                <p>Face recognition is currently <span class="text-success">active</span></p>
+                <div class="row paddedRow bg-primary text-light">
+                    <div class="col">
+                        <h3>Total Persons Detected:</h3>
+                        <p></p>
+                        <h1 id="totalFaces"> </h1>
+                    </div>
+                </div>
+                <div class="row paddedRow2 bg-primary text-light">
+                    <div class="col">
+                        <h3>Persons Recognized:</h3>
+                        <p></p>
+                        <h1 id="names"></h1>
+                    </div>
+                    
+                </div>
+                
+            {% elif not capture_active %}
+                <button class="btn btn-primary" type="submit" name="on_off" value="True">Activate</button>
+                <p></p>
+                <p>Face recognition is currently <span class="text-danger">inactive</span></p>
+                
+            {% endif %}
+            </form>
+        </div>
+    </div>
+
+    {% if capture_active %}
+    <script>
+        setInterval(getFaceCount, 5000);
+        setInterval(getPeople, 5000);
+
+        // Fetch total number of detected faces and output
+        function getFaceCount() {
+            fetch("/no_of_faces")
+                .then(response => response.json())
+                .then(function (data) {
+                    if (data) {
+                        document.getElementById("totalFaces").innerHTML = data.faces;
+                    }
+                });
+
+        }
+        
+        // Fetch names of detected people and output
+        function getPeople() {
+            fetch("/people")
+                .then(response => response.json())
+                .then(function (people) {
+
+                    // Clear innerHTML
+                    document.getElementById("names").innerHTML = "";
+
+                    for (name in people) {
+                        document.getElementById("names").innerHTML += people[name] + "<br>";
+                    }
+                    
+                });
+            
+        }
+    </script>
+    {% endif %}
+{% endblock %}
