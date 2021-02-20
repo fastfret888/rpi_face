@@ -65,7 +65,7 @@ def index():
                 # Start capture_faces thread
                 capturethread = threading.Thread(target=capture_faces, args=(facelist, idlist))
                 capturethread.start()
-                sleep(3)
+                #sleep(3)
 
             elif on_off == "False":
 
@@ -76,7 +76,7 @@ def index():
 
                 # Flash message
                 flash("Face recognition deactivated")
-                sleep(3)
+                sleep(2)
 
         return redirect("/")        
 

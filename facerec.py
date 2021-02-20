@@ -28,10 +28,12 @@ def capture_faces(facelist, idlist):
     face_locations = []
     face_encodings = []
 
+    # Camera warm-up time 
+    sleep(2) 
+
     while True:
         print("Capturing image.")
-        # Camera warm-up time
-        sleep(2) 
+        
         # Grab a single frame of video from the RPi camera as a numpy array
         camera.capture(output, format="rgb")
 
