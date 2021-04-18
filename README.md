@@ -15,7 +15,7 @@ It is NOT recommended for authentication purposes, as the algorithms are not sop
 ##### FUNCTIONALITY
 
 The application runs in Raspberry OS’s native Python 3.7, making use of the face_recognition module for face encoding, detection and recognition algorithms.
-The face recognition function is run as thread, which loops image capture -> face detection -> face recognition against known face database —> return total detected faces and names of recognized persons. Each cycle takes about 3 seconds on a Raspberry Pi 4 @2k resolution, which is about as “real-time” as it gets due to the hardware limitations.
+The face recognition function is run as thread, which loops image capture -> face detection -> face recognition against known face database —> return total detected faces and names of recognized persons. Each cycle takes about 2 seconds on a Raspberry Pi 4 @2k resolution, which is about as “real-time” as it gets due to the hardware limitations.
 
 A sqlite3 database is used to store user’s names along with their face encodings. An image containing a face is submitted via the web interface and pre-processed for size and orientation before being processed by the f_encode function, which outputs a 128-dimension face encoding. The face encoding is saved to the sqlite database as a numpy array using a custom sql adapter and converter. No user images are saved in the database.
 
